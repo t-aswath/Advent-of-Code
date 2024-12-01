@@ -3,16 +3,12 @@ input = File.read!("../inputs/day1.txt")
 list1 = []
 list2 = []
 
-lines = String.split(input, "\n")
+lines = String.split(input, "\n", trim: true)
 
 {list1,list2} = Enum.reduce(lines,{list1,list2}, fn line,{list1,list2} ->
   nums = String.split(line, "   ")
-  if nums != [""] do
-    [first | rest] = nums
-    {list1 ++ [first], list2 ++ rest}
-  else
-    {list1,list2}
-  end
+  [first | rest] = nums
+  {list1 ++ [first], list2 ++ rest}
 end)
 
 list1 = Enum.map(list1,fn i -> String.to_integer(i) end)
